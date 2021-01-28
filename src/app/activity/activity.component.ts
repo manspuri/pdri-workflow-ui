@@ -10,6 +10,7 @@ import { CertificationActivityComponent } from './certification-activity/certifi
 import { SetProctoredComponent } from './set-proctored/set-proctored.component';
 import { AccommodationsActivityComponent } from './accommodations-activity/accommodations-activity.component';
 import { MenuActivityComponent } from './menu-activity/menu-activity.component';
+import { SchedulingActivityComponent } from './scheduling-activity/scheduling-activity.component';
 
 export interface ActivityComponent {
     activity: any;
@@ -44,6 +45,8 @@ export class ActivityComponentResolver {
                 return AccommodationsActivityComponent;
             case 'MenuActivity':
                 return MenuActivityComponent;
+            case 'SchedulingActivity':
+                return SchedulingActivityComponent;
             default:
                 return null;
         }

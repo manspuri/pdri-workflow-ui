@@ -8,7 +8,8 @@ import { ActivityViewComponent } from './activity/activity-view/activity-view.co
 import { ErrorViewComponent } from './error-view/error-view.component';
 
 const routes: Routes = [
-    { path: 'views/activity', component: ActivityViewComponent, canActivate: [AuthGuardGuard] },
+    // { path: 'views/activity', component: ActivityViewComponent, canActivate: [AuthGuardGuard] },
+    { path: 'views/activity', component: ActivityViewComponent },
     { path: 'views/error', component: ErrorViewComponent },
     { path: '', redirectTo: '/views/activity', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent },

@@ -26,6 +26,7 @@ import { AccommodationsActivityComponent } from './activity/accommodations-activ
 import { SetProctoredComponent } from './activity/set-proctored/set-proctored.component';
 import { environment } from '../environments/environment';
 import { WORKFLOW_SERVICE_CONFIG } from './services/workflow.service';
+import { SchedulingActivityComponent } from './activity/scheduling-activity/scheduling-activity.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { WORKFLOW_SERVICE_CONFIG } from './services/workflow.service';
         ErrorViewComponent,
         AccommodationsActivityComponent,
         MenuActivityComponent,
-        ErrorViewComponent
+        ErrorViewComponent,
+        SchedulingActivityComponent
     ],
     entryComponents: [
         HtmlActivityComponent,
@@ -61,7 +63,8 @@ import { WORKFLOW_SERVICE_CONFIG } from './services/workflow.service';
         ErrorViewComponent,
         AccommodationsActivityComponent,
         MenuActivityComponent,
-        ErrorViewComponent
+        ErrorViewComponent,
+        SchedulingActivityComponent
     ],
     imports: [
         BrowserModule,

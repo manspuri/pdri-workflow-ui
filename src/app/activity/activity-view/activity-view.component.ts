@@ -107,6 +107,83 @@ export class ActivityViewComponent implements OnInit, OnDestroy {
     }
 
     displayActivity(activity) {
+        //@TODO remove -- right now just mocking out schdeduling activity data
+        activity.activityType = "SchedulingActivity"
+        activity.accommodations = { type: "STATIC", value: "Extra Time"}
+        activity.workflow = {
+            name: "Scheduling Activity"
+        }
+        activity.rescheduleExamButtonText = "Reschedule Exam"
+        activity.scheduleExamButtonText = "Schedule Exam"
+        activity.textForNoSchedule = "No Available Exams"
+        activity.cancelExamButtonText = "Cancel Exam"
+        activity.textForTableOfScheduledExams = "Exams"
+        activity.candidateIdStrategy = "externalOrgId"
+        activity.clientId = "123asldni-94823"
+        activity.examSeriesCode = "12345"
+        activity.examSchedulingBegin = "12/31/2020"
+        activity.examSchedulingEnd = "2/28/2021"
+        activity.workflowInstanceAppointment = {
+            _id: '123123',
+            provider: 'pearson',
+            providerAppointmentId: 'alne23124',
+            candidateId: '12413124',
+            providerCandidateId: '9234nise',
+            appointmentStartTimestamp: 1614448800,
+            appointmentEndTimestamp: 1614456000,
+            status: 'CREATED',
+            statusHistory: 'CREATED',
+            scheduled: true,
+            exams: [
+                // assuming that there is always one object in the array
+                {
+                    examSeriesCode: 'EA938',
+                    examName: 'Pearson USA Hire Exam'
+                }
+            ],
+            testCenter: {
+                testCenterName: 'Harriton Testing Center',
+                testCenterAddress: {
+                    address1: '123 Main Street',
+                    city: 'Philadelphia',
+                    state: 'PA',
+                    postalCode: '12334',
+                    country: 'United States of America'
+                }
+            }
+        },
+        activity.candidateAppointments = [
+            {
+                _id: '12382743',
+                provider: 'pearson',
+                providerAppointmentId: 'alne231283',
+                candidateId: '12413124',
+                providerCandidateId: '9234nise',
+                appointmentStartTimestamp: 1614448800,
+                appointmentEndTimestamp: 1614456000,
+                status: 'PROVISIONED',
+                statusHistory: 'PROVISIONED',
+                scheduled: false,
+                exams: [
+                    {
+                        examSeriesCode: 'EA938',
+                        examName: 'Pearson USA Hire Exam'
+                    }
+                ],
+                testCenter: {
+                    testCenterName: 'Harriton Testing Center 2',
+                    testCenterAddress: {
+                        address1: '555 Main Street',
+                        city: 'Philadelphia',
+                        state: 'PA',
+                        postalCode: '12334',
+                        country: 'United States of America'
+                    }
+                }
+            }
+        ]
+        // end @TODO
+
         const activityComponent = ActivityComponentResolver.getActivityComponent(activity);
 
         this.activityErrors = [];
