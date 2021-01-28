@@ -1,0 +1,19 @@
+<header class="pf2-header">
+    <nav class="navbar navbar-expand">
+        <div class="navbar-brand">
+            <div class="pf2-header-logo"></div>
+            <div class="pf2-header-title" *ngIf="title !== null && title !== ''">
+                <h1><span>{{title}}</span></h1>
+            </div>
+        </div>
+        <ul class="navbar-nav mr-auto"></ul>
+    </nav>
+</header>
+<div class="pf2-content-wrapper">
+    <div class="container-fluid wf-general-errors">
+        <div class="row">
+            <div class="col" role="alert" [innerHTML]="errorMsg">
+            </div>
+        </div>
+    </div>
+</div>

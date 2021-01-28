@@ -1,0 +1,50 @@
+<header class="pf2-header">
+    <nav class="navbar navbar-expand">
+        <div class="navbar-brand">
+            <div class="pf2-header-logo"></div>
+            <div class="pf2-header-title" *ngIf="title !== null && title !== ''">
+                <h1><span>{{title}}</span></h1>
+            </div>
+        </div>
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown" dropdown *ngIf="enableLanguageSelection && availableLanguages !== null">
+                <a class="nav-link dropdown-toggle" dropdownToggle id="languageDrop" href="#" data-toggle="dropdown"
+                    aria-controls="languageMenu" (click)="false;">
+                    <fa-icon [icon]="faLanguage" size="lg"></fa-icon><span class="current-language">
+                        {{currentLanguageName}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" *dropdownMenu id="languageMenu"
+                    aria-labelledby="languageLink">
+                    <a class="dropdown-item" *ngFor="let language of availableLanguages" role="menuitem" href="#"
+                        (click)="switchLanguage(language.language);false">
+                        {{language.name}}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="pf2-content-wrapper" aria-live="assertive">
+    <div class="container-fluid wf-activity-errors">
+        <div *ngIf="generalError && generalErrorMsg === null" class="row">
+            <div class="col" role="alert">
+                <div class="alert alert-danger">A problem occured. Please try again. If the problem persists please
+                    contact the approriate help desk.</div>
+            </div>
+        </div>
+        <div *ngIf="generalError && generalErrorMsg !== null" class="row">
+            <div class="col" role="alert" [innerHTML]="generalErrorMsg">
+            </div>
+        </div>
+        <div *ngIf="activityErrors && activityErrors.length > 0" class="row">
+            <div class="col" role="alert">
+                <div class="alert alert-danger" *ngFor="let error of activityErrors">{{error}}</div>
+            </div>
+        </div>
+    </div>
+    <ng-container wf-activity></ng-container>
+    <form id="postFrm" *ngIf="postAction" method="POST" action="{{postAction}}">
+        <input type="hidden" name="{{f.name}}" value="{{f.value}}" *ngFor="let f of postFields" />
+    </form>
+</div>

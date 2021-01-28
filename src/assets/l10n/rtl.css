@@ -1,0 +1,13 @@
+body {
+    direction: rtl;
+}
+
+.btn +.btn {
+    margin-right: .25rem;
+    margin-left: 0;
+}
+
+.dropdown-menu-right {
+    left: 0 !important;
+    right: unset !important;
+}

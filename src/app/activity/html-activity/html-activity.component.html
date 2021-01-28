@@ -1,0 +1,9 @@
+<div *ngIf="currentContent !== null" class="row wf-activity-content">
+    <div class="col wf-html-content" [innerHTML]="currentContent"></div>
+</div>
+<div class="row justify-content-center wf-actvity-nav">
+    <div class="col text-center">
+        <button *ngIf="activity.allowBack && activity.currentPage > 0" class="btn btn-secondary"
+            (click)="back()" [disabled]="updating">{{activity.backBtn}}</button> <button class="btn btn-primary" (click)="next()" [disabled]="updating">{{activity.nextBtn}}</button>
+    </div>
+</div>

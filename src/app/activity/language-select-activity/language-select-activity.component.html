@@ -1,0 +1,21 @@
+<div *ngIf="message !== null" class="row wf-activity-instructions">
+    <div class="col" [innerHTML]="message"></div>
+</div>
+<div *ngIf="message !== null" class="row justify-content-center wf-activity-content">
+    <div class="col-auto">
+        <form *ngIf="availableLanguages !== null">
+            <div class="form-check" *ngFor="let availableLanguage of availableLanguages; let l = index">
+                <input class="form-check-input" type="radio" name="language" id="availableLanguage{{l}}"
+                    [value]="availableLanguage.language" [(ngModel)]="language" (change)="languageChanged()"
+                    [disabled]="updating">
+                <label class="form-check-label" for="availableLanguage{{l}}">{{availableLanguage.name}}</label>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-center wf-actvity-nav">
+    <div class="col text-center">
+        <button class="btn btn-primary" (click)="next()"
+            [disabled]="updating || language === ''">{{activity.nextBtn}}</button>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div *ngIf="message !== null" class="row wf-activity-instructions">
+    <div class="col wf-html-content" [innerHTML]="message"></div>
+</div>
+<div class="row wf-activity-content">
+    <div class="col-auto">
+        <form>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="certified" id="certified"
+                    [(ngModel)]="certified">
+                <label class="form-check-label" for="certified">{{activity.certificationLabel}}</label>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-center mt-4">
+    <div class="col text-center">
+        <button class="btn btn-primary" (click)="next()" [disabled]="!certified">{{activity.nextBtn}}</button>
+    </div>
+</div>

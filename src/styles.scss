@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@pfit2ng/global-styles/scss/pfit2.scss";
+
+.pf2-header .nav-link.dropdown-toggle span.current-language {
+    @include media-breakpoint-only(xs) {
+        display: none;
+    }
+}
+
+.wf-actvity-nav {
+    margin-top: 1.5rem;
+
+    :first-child {
+        margin-top: 0;
+    }
+}
+
+.form-accommodations {
+    ul {
+        list-style: none;
+        padding-inline-start: 15px;
+
+        li {
+            input {
+                display: inline-block;
+                margin-right: 5px;
+            }
+
+            p {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.form-other-accommodations {
+    label {
+        display: block;
+    }
+}
+
+[wf-menu-activity] {
+    button.list-group-item.list-group-item-action {
+        cursor: pointer;
+        &:focus, &:active {
+            outline: none;
+        }
+    }
+}

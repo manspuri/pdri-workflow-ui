@@ -1,0 +1,26 @@
+<div *ngIf="question" class="row wf-activity-content">
+    <div class="col wf-html-content" [innerHTML]="question"></div>
+</div>
+<div *ngIf="activity.responseStyle === 'button'" class="row justify-content-center wf-actvity-nav">
+    <div class="col text-center">
+        <button *ngFor="let response of activity.responses" type="button" class="btn {{response.responseFormat}} mr-2"
+            (click)="next(response.responseValue)" [disabled]="updating">{{response.responseText}}</button>
+    </div>
+</div>
+<div *ngIf="activity.responseStyle === 'listGroup'" class="row justify-content-center wf-actvity-nav">
+    <div class="col">
+        <ul class="list-group">
+            <button type="button" class="list-group-item  list-group-item-action"
+                [ngClass]="{active : selectedValue === response.responseValue}"
+                *ngFor="let response of activity.responses"
+                (click)="selectedValue = response.responseValue;">{{response.responseText}}</button>
+        </ul>
+    </div>
+
+</div>
+<div *ngIf="activity.responseStyle === 'listGroup'" class=" row justify-content-center wf-actvity-nav">
+    <div class="col text-center">
+        <button class="btn btn-primary" (click)="next(selectedValue)"
+            [disabled]="updating || selectedValue === null">{{activity.nextBtn}}</button>
+    </div>
+</div>

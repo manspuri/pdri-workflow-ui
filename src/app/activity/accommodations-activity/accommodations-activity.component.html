@@ -1,0 +1,49 @@
+<div class="row wf-activity-instructions">
+    <div *ngIf="instructions" class="col wf-html-content" [innerHTML]="instructions"></div>
+    <div *ngIf="approvalMsg" class="col wf-html-content" [innerHTML]="approvalMsg"></div>
+</div>
+<div class="row wf-activity-content">
+    <div class="col-sm-12">
+        <form>
+            <div class="form-accommodations">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>{{activity.tableHeaders[activity.state === 'SELECTING' ? 'SELECT' : 'SELECTED']}}</th>
+                                <th>{{activity.tableHeaders['NAME']}}</th>
+                                <th>{{activity.tableHeaders['DESC']}}</th>
+                                <th *ngIf="activity.state !== 'SELECTING'">{{activity.tableHeaders['STATUS']}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of activity.accommodations">
+                                <td>
+                                    <input class="form-accommodations-input" type="checkbox" id="{{a.code}}"
+                                        name="{{a.code}}" [(ngModel)]="a.selected"
+                                        [disabled]="activity.state !== 'SELECTING'">
+                                </td>
+                                <td>{{a.name}}</td>
+                                <td>{{a.description}}</td>
+                                <td *ngIf="activity.state !== 'SELECTING'">{{a.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="activity.allowOther" class="form-other-accommodations">
+                <label *ngIf="!otherAccommodationsStatus" class="form-other-accommodations-label"
+                    for="otherAccommodations">{{activity.otherAccommodationsLbl}}:</label>
+                <label *ngIf="otherAccommodationsStatus" class="form-other-accommodations-label"
+                    for="otherAccommodations">{{activity.otherAccommodationsLbl}}: {{otherAccommodationsStatus}}</label>
+                <textarea class="form-control" id="otherAccommodations" name="otherAccommodations" rows="5"
+                    [(ngModel)]="otherAccommodations" [readOnly]="activity.state !== 'SELECTING'"></textarea>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="activity.state !== 'PENDING'" class="row justify-content-center mt-4">
+    <div class="col text-center">
+        <button class="btn btn-primary" (click)="next()" [disabled]="updating">{{activity.nextBtn}}</button>
+    </div>
+</div>

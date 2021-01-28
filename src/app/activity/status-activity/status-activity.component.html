@@ -1,0 +1,46 @@
+<div *ngIf="topMessage !== null" class="row wf-activity-instructions">
+    <div class="col wf-html-content" [innerHTML]="topMessage"></div>
+</div>
+<div class="row wf-activity-content">
+    <div class="col-sm-12">
+        <div class="table-responsive">
+            <table class="wf-status-table table">
+                <thead>
+                    <tr>
+                        <th>{{activity.activityNameCol}}</th>
+                        <th class="text-center">{{activity.statusCol}}</th>
+                        <th>{{activity.startedCol}}</th>
+                        <th>{{activity.completedCol}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let act of activity.activities">
+                        <td>{{act.name}}</td>
+                        <td class="text-center">
+                            <div attr.aria-label="{{getAriaStatus(act.status)}}" [ngClass]="getStatusClass(act.status)">
+                                <fa-icon [icon]="(act.status === 'DONE' || act.status === 'SKIPPED') ? faCheckSquare : faSquare"></fa-icon>
+                                <span></span>
+                            </div>
+                        </td>
+                        <td>
+                            <span *ngIf="act.started === undefined">N/A</span>
+                            <span *ngIf="act.started !== undefined">{{act.started | date: dateFmt}}</span>
+                        </td>
+                        <td>
+                            <span *ngIf="act.completed === undefined">N/A</span>
+                            <span *ngIf="act.completed !== undefined">{{act.completed | date: dateFmt}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf="bottomMessage !== null" class="row wf-activity-instructions">
+    <div class="col wf-html-content" [innerHTML]="bottomMessage"></div>
+</div>
+<div class="row justify-content-center mt-4">
+    <div class="col text-center">
+        <button class="btn btn-primary" (click)="next()" [disabled]="updating">{{activity.nextBtn}}</button>
+    </div>
+</div>
