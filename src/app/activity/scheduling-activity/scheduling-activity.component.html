@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="table-responsive">
+      <h2 *ngIf="activity.workflowInstanceAppointment" class="exam-table-title">{{ activity.textForTableOfScheduledExams }}</h2>
+      <h3 *ngIf="!activity.workflowInstanceAppointment">{{ activity.textForNoSchedule }}</h3>
+      <table *ngIf="activity.workflowInstanceAppointment" class="table">
+        <thead>
+          <tr>
+            <th>Current Appointment</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                {{ activity.workflowInstanceAppointment.exams[0].examName }} - {{ activity.workflowInstanceAppointment.testCenter.testCenterName }}
+              </div>
+              <br />
+              <div *ngIf="activity.workflowInstanceAppointment.testCenter.testCenterAddress">
+                {{ activity.workflowInstanceAppointment.testCenter.testCenterAddress.address1 }}
+              </div>
+              <span *ngIf="activity.workflowInstanceAppointment.testCenter.testCenterAddress">
+                {{ activity.workflowInstanceAppointment.testCenter.testCenterAddress.city }},
+              </span>
+              <span *ngIf="activity.workflowInstanceAppointment.testCenter.testCenterAddress">
+                {{ activity.workflowInstanceAppointment.testCenter.testCenterAddress.state }}
+              </span>
+              <span *ngIf="activity.workflowInstanceAppointment.testCenter.testCenterAddress">
+                {{ activity.workflowInstanceAppointment.testCenter.testCenterAddress.postalCode }}
+              </span>
+              <span *ngIf="!activity.workflowInstanceAppointment.testCenter.testCenterAddress">N/A</span>
+              <div *ngIf="activity.workflowInstanceAppointment.start">
+                {{ activity.workflowInstanceAppointment.start | date: dateFmt }} at {{ activity.workflowInstanceAppointment.start | date: timeFmt }}
+              </div>
+            </td>
+            <td>
+              <button class="btn btn-primary">{{ activity.rescheduleExamButtonText }}</button>
+              <button class="btn btn-secondary">{{ activity.cancelExamButtonText }}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table *ngIf="activity.candidateAppointments.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>Other Appointment Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of activity.candidateAppointments">
+            <td>
+              <div>
+                {{ appointment.exams[0].examName }} - {{ appointment.testCenter.testCenterName }}
+              </div>
+              <br />
+              <div *ngIf="appointment.testCenter.testCenterAddress">
+                {{ appointment.testCenter.testCenterAddress.address1 }}
+              </div>
+              <span *ngIf="appointment.testCenter.testCenterAddress">
+                {{ appointment.testCenter.testCenterAddress.city }},
+              </span>
+              <span *ngIf="appointment.testCenter.testCenterAddress">
+                {{ appointment.testCenter.testCenterAddress.state }}
+              </span>
+              <span *ngIf="appointment.testCenter.testCenterAddress">
+                {{ appointment.testCenter.testCenterAddress.postalCode }}
+              </span>
+              <span *ngIf="!appointment.testCenter.testCenterAddress">N/A</span>
+              <div *ngIf="appointment.start">
+                {{ appointment.start | date: dateFmt }} at {{ appointment.start | date: timeFmt }}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
